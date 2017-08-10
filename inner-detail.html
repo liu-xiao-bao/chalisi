@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="jquery.aw-showcase.css" rel="stylesheet" type="text/css" />
+
+<style>
+.b-dialog, #s_detail {
+	text-align : center;
+}
+
+.b-dialog > div, #s_detail > div {
+	margin : auto;
+}
+.width-full {
+	width:1000px;
+}
+
+.memo {
+	height:6em;
+	width:100%;
+	background : white;
+	padding : 0.6em;
+	text-align : left;
+	text-indent: 2em;
+	background-color: #fff; 
+//	background-image: 
+	linear-gradient(#eee .7em, transparent .1em);
+	background-size: 100% 1.2em;
+	position:absolute;
+	opacity:0.6;
+	bottom:0;
+}
+
+.memo span{
+	opacity:1;
+	position:relative;
+}
+
+#picker img {
+	width:8.2em;
+	margin-top:0.5em;
+	display: block;
+	cursor: pointer;
+	opacity:0.5;
+	transition:1s;
+}
+
+#picker img:hover {
+	opacity:1;
+}
+
+#top-c div {
+	border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #ECECEC rgba(0, 0, 0, 0);
+	border-style: solid;
+	border-width: 24px 48px;
+	height: 0;
+	margin: -8px 16px auto 16px;
+	width: 0;
+	top:-12px;
+}
+
+#top-c div:hover {
+	cursor: pointer;
+	border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #666666  rgba(0, 0, 0, 0);
+	margin: -8px 14px auto 16px;
+}
+
+#bottom-c div {
+	border-color: #ECECEC rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+	border-style: solid;
+	border-width: 24px 48px;
+	height: 0;
+	margin: auto 16px -8px 16px ;
+	width: 0;
+}
+
+#bottom-c div:hover {
+	cursor: pointer;
+	border-color: #666666 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+	margin: auto 16px -8px 14px;
+}
+
+.close {
+display: none;
+position: absolute;
+top: -1.5em;
+right: -1.5em;
+width: 1.5em;
+line-height: 1.5;
+height: 1.5em;
+border: .2em solid #BD0948;
+font-size: 120%;
+color: rgb(255, 255, 255);
+background: rgb(0, 0, 0);
+text-align: center;
+text-shadow: 1px 1px 3px rgb(0, 0, 0);
+text-decoration: none;
+border-radius: 1em;
+box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+display: block;
+	transition:1s;
+}
+
+.showcase-content img {
+/*	display : none; */
+	width : 600px;
+	height: 500px; 
+	float:left;
+}
+.showcase-thumbnail {
+	width : 180px;
+	height : auto;
+}
+.showcase-thumbnail img {
+/*	display : none; */
+	width : 180px;
+	height : auto;
+}
+</style>
+<script type="text/javascript" src="scripts/jquery.aw-showcase.js"></script>
+
+<script>
+var awShowcase = function() {
+	$("#slider").awShowcase(
+	{
+		content_width:			600,
+	//	content_height:			470,
+		fit_to_parent:			false,
+		auto:					false,
+		interval:				3000,
+		continuous:				false,
+		loading:				true,
+		tooltip_width:			200,
+		tooltip_icon_width:		32,
+		tooltip_icon_height:	32,
+		tooltip_offsetx:		18,
+		tooltip_offsety:		0,
+		arrows:					true,
+		buttons:				false,
+		btn_numbers:			false,
+		keybord_keys:			true,
+		mousetrace:				false, /* Trace x and y coordinates for the mouse */
+		pauseonover:			true,
+		stoponclick:			true,
+		transition:				'vslide', /* hslide/vslide/fade */
+		transition_delay:		300,
+		transition_speed:		600,
+		show_caption:			'onhover', /* onload/onhover/show */
+		thumbnails:				true,
+		thumbnails_position:	'outside-last', /* outside-last/outside-first/inside-last/inside-first */
+		thumbnails_direction:	'vertical', /* vertical/horizontal */
+		thumbnails_slidex:		0, /* 0 = auto / 1 = slide one thumbnail / 2 = slide two thumbnails / etc. */
+		dynamic_height:			true, /* For dynamic height to work in webkit you need to set the width and height of images in the source. Usually works to only set the dimension of the first slide in the showcase. */
+		speed_change:			true, /* Set to true to prevent users from swithing more then one slide at once. */
+		viewline:				false /* If set to true content_width, thumbnails, transition and dynamic_height will be disabled. As for dynamic height you need to set the width and height of images in the source. */
+	});
+	$("#slider").css("width", "auto");
+	$(".showcase-thumbnail-container").each(function(idx, ele) {
+		$thumbnailContainer = $(ele);
+		var picAdjust = $thumbnailContainer.prev().height();
+		$thumbnailContainer.css("height", picAdjust);
+		$thumbnailContainer.find(".showcase-thumbnail-restriction").css("height", picAdjust-60);
+	});
+	$(".showcase-thumbnail-vertical").parent().show();
+
+}
+
+	var pagemiddle = function() {
+		var $my = $("#s_detail");
+		var width = parseInt($my.css("width"));
+		if (width == 0) width = 600;
+		$my.css("margin-left", -width / 2);
+		$my.css("margin-top", -parseInt($my.css("height")) / 2);
+	}
+
+$(function() {
+
+	$(".close").click(function(){
+		$("body").overlay({},"close");
+		$("#s_detail").hide();
+		return false;
+	});
+
+
+});
+</script>
+
+<title>详细一览</title>
+</head>
+<body class="b-dialog" style="background-color: #FDFDFD;">
+
+<div id="l-img" style="float:left;">
+	<div id="slider" class="showcase" style="margin:0;width:auto;float:none;">
+		<div class="showcase-slide">
+			<div class="showcase-content">
+				<img src="images/h01.jpg" alt="01" />
+			</div>
+			<div class="showcase-thumbnail">
+				<img src="images/h01.jpg" alt="01" />
+			</div>
+		</div>
+		<div class="showcase-slide">
+			<div class="showcase-content">
+				<img src="images/display_10702_1.jpg" alt="图2" />
+			</div>
+			<div class="showcase-thumbnail">
+				<img src="images/display_10702_1.jpg" alt="图2" />
+			</div>
+		</div>
+		<div class="showcase-slide">
+			<div class="showcase-content">
+				<img src="images/display_10702_11.jpg" alt="图3" />
+			</div>
+			<div class="showcase-thumbnail">
+				<img src="images/display_10702_11.jpg" alt="图3" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+<div style="clear:both;"></div>
+<a class="close" href="#">✖</a>
+
+</body></html>
